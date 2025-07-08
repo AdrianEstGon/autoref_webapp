@@ -278,25 +278,35 @@ const PartidosView: React.FC = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {partidos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(partido => (
-                    <TableRow key={partido.id ?? `temp-${Math.random()}`}>
-                      <TableCell align="center">{formatDate(partido.fecha)}</TableCell>
-                      <TableCell align="center">{formatTime(partido.hora)}</TableCell>
-                      <TableCell align="center">{partido.lugar || '-'}</TableCell>
-                      <TableCell align="center">{partido.equipoLocal}</TableCell>
-                      <TableCell align="center">{partido.equipoVisitante}</TableCell>
-                      <TableCell align="center">{partido.categoria}</TableCell>
-                      <TableCell align="center">{partido.jornada}</TableCell>
-                      <TableCell align="center">
-                        <IconButton onClick={() => handleModify(partido)} color="primary">
-                          <EditIcon />
-                        </IconButton>
-                        <IconButton onClick={() => { setPartidoToDelete(partido.id); setOpenConfirmDialog(true); }} color="error">
-                          <DeleteIcon />
-                        </IconButton>
+                  {partidos.length === 0 ? (
+                    <TableRow>
+                      <TableCell colSpan={8} align="center">
+                        <MuiTypography variant="subtitle1" color="textSecondary">
+                          No hay partidos registrados actualmente.
+                        </MuiTypography>
                       </TableCell>
                     </TableRow>
-                  ))}
+                  ) : (
+                    partidos.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(partido => (
+                      <TableRow key={partido.id ?? `temp-${Math.random()}`}>
+                        <TableCell align="center">{formatDate(partido.fecha)}</TableCell>
+                        <TableCell align="center">{formatTime(partido.hora)}</TableCell>
+                        <TableCell align="center">{partido.lugar || '-'}</TableCell>
+                        <TableCell align="center">{partido.equipoLocal}</TableCell>
+                        <TableCell align="center">{partido.equipoVisitante}</TableCell>
+                        <TableCell align="center">{partido.categoria}</TableCell>
+                        <TableCell align="center">{partido.jornada}</TableCell>
+                        <TableCell align="center">
+                          <IconButton onClick={() => handleModify(partido)} color="primary">
+                            <EditIcon />
+                          </IconButton>
+                          <IconButton onClick={() => { setPartidoToDelete(partido.id); setOpenConfirmDialog(true); }} color="error">
+                            <DeleteIcon />
+                          </IconButton>
+                        </TableCell>
+                      </TableRow>
+                    ))
+                  )}
                 </TableBody>
               </Table>
             </TableContainer>
