@@ -111,7 +111,7 @@ const hasSessionExpired = (dataUser: any) => {
       // Elimina la notificación después de un pequeño retraso para que se vea el efecto de deslizamiento
       setTimeout(() => {
         setNotifications((prev) => prev.filter((n) => n.id !== id));
-        setSlidingOutNotification(null); // Resetea la notificación deslizada
+        setSlidingOutNotification(null); 
       }, 500); // 500 ms (tiempo de la animación) antes de eliminarla
     } catch (error) {
       console.error('Error al marcar como leída:', error);
@@ -233,9 +233,9 @@ const hasSessionExpired = (dataUser: any) => {
                             borderRadius: 2,
                             boxShadow: 1,
                             position: 'relative',
-                            transition: 'transform 0.5s ease-out', // Animación suave
+                            transition: 'transform 0.5s ease-out', 
                             transform: slidingOutNotification === notification.id ? 'translateX(100%)' : 'translateX(0)', // Deslizar la tarjeta hacia la derecha
-                            overflow: 'hidden', // Para evitar que el contenido se desborde
+                            overflow: 'hidden', 
                           }}
                         >
                           <CardContent sx={{ p: 2, pb: 6 }}>

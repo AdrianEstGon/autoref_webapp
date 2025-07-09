@@ -209,13 +209,11 @@ const DesignacionesView = () => {
     cargarDatos();
   }, []);  
   
-  // Función que maneja la apertura del popover
   const handlePopoverOpen = (event: React.MouseEvent<HTMLElement>, comentario: string) => {
     setComentario(comentario);
     setPopoverAnchorEl(event.currentTarget);
   };
 
-  // Función que maneja el cierre del popover
   const handlePopoverClose = () => {
     setPopoverAnchorEl(null);
     setComentario(null);
@@ -337,7 +335,6 @@ const DesignacionesView = () => {
           </Grid>
           <Grid item xs>
             <Typography variant="body2" align="left" sx={{ paddingLeft: 1 }}>
-              {/* Aquí podrías agregar más contenido si lo necesitas */}
             </Typography>
           </Grid>
         </Grid>
@@ -471,7 +468,6 @@ const DesignacionesView = () => {
           }}
         />
 
-        {/* Estado visual debajo del autocomplete con ícono */}
         {seleccionado && seleccionado.nombre !== "Incompleto" && (
           <Box mt={1} display="flex" alignItems="center" gap={1}>
             <Chip
@@ -484,7 +480,6 @@ const DesignacionesView = () => {
           </Box>
         )}
 
-        {/* Mostrar comentario usando renderComentario */}
         {renderComentario(partido, arbitro, handlePopoverOpen)}
 
       </Box>
@@ -601,7 +596,7 @@ const DesignacionesView = () => {
     console.error("Error al publicar designaciones:", error);
     toast.error("Error al publicar designaciones");
     } finally {
-      setPublicando(false); // Termina la carga
+      setPublicando(false); 
     }
   };
   
@@ -635,7 +630,7 @@ const DesignacionesView = () => {
 
 
   const asignarArbitrosAutomaticamente = () => {
-    setAsignando(true); // Comienza el loading
+    setAsignando(true); 
     setTimeout(() => {
       const partidosAAsignar = partidosFiltrados.filter(partido =>
         partidosSeleccionados.has(partido.id)
@@ -679,7 +674,7 @@ const DesignacionesView = () => {
         setDesignaciones({ ...designaciones, ...nuevasDesignaciones });
       }
   
-      setAsignando(false); // Finaliza el loading
+      setAsignando(false); 
     }, 300); 
   };
   
@@ -729,7 +724,6 @@ const DesignacionesView = () => {
                   />
                 </Grid>
               </Grid>
-              {/* Nueva fila para la categoría */}
               <Grid container spacing={2} mt={2}>
                 {/* Filtro Categoría */}
                 <Grid item xs={12} sm={6} md={10}>

@@ -78,7 +78,7 @@ const PerfilView = () => {
             fechaNacimiento: datosUsuario.fechaNacimiento
             ? new Date(datosUsuario.fechaNacimiento)
                 .toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "numeric" })
-                .replace(/\//g, "-") // Reemplaza "/" por "-"
+                .replace(/\//g, "-") 
             : "",
           
             direccion: datosUsuario.direccion || "",
@@ -92,7 +92,6 @@ const PerfilView = () => {
             licencia: datosUsuario.licencia || "",
           });
 
-          // Obtener el nombre del club vinculado
           if (datosUsuario.clubVinculadoId) {
             obtenerClubNombre(datosUsuario.clubVinculadoId);
           }
@@ -124,10 +123,10 @@ const PerfilView = () => {
         const usuarioId = localStorage.getItem("userId");
         if (usuarioId) {
           await userService.uploadProfilePicture(e.target.files[0]);
-          setFotoPreview(fotoURL);  // Actualizamos la preview localmente
+          setFotoPreview(fotoURL); 
           localStorage.setItem("fotoPerfil", fotoURL);
           toast.success("Foto de perfil actualizada con éxito");
-          window.dispatchEvent(new Event("storage")); // Notificar cambios
+          window.dispatchEvent(new Event("storage"));
         }
       } catch (error) {
         console.error("Error al subir la foto de perfil:", error);
@@ -239,7 +238,7 @@ const PerfilView = () => {
       <Grid container spacing={3} justifyContent="center">
         <Grid item xs={12} display="flex" justifyContent="center" flexDirection="column" alignItems="center">
           <Avatar
-            src={fotoPreview || perfil.fotoPerfil} // <-- mostrar fotoPreview si existe, sino la original
+            src={fotoPreview || perfil.fotoPerfil} 
             sx={{ width: 120, height: 120, boxShadow: 3 }}
           />
           <Tooltip title="Modificar foto de perfil">
@@ -382,13 +381,12 @@ const PerfilView = () => {
           />
         </Grid>
 
-        {/* Botón de Modificar Contraseña junto a los últimos campos */}
         <Grid item xs={12} md={6}>
           <Button
             variant="outlined"
             color="primary"
             onClick={() => {
-              // Limpiar todos los campos y errores antes de abrir el diálogo
+              // Limpia todos los campos y errores antes de abrir el diálogo
               setOldPassword("");
               setNewPassword("");
               setConfirmPassword("");

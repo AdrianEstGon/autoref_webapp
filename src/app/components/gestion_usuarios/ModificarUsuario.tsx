@@ -129,7 +129,7 @@ const ModificarUsuario: React.FC<ModificarUsuarioProps> = ({ open, onClose, onUp
     }
 
     try {
-      setLoading(true); // <- Iniciar carga
+      setLoading(true); 
       await authService.updateUser(usuarioEditado);
       toast.success('Usuario actualizado con éxito');
       onUpdate();
@@ -138,7 +138,7 @@ const ModificarUsuario: React.FC<ModificarUsuarioProps> = ({ open, onClose, onUp
     } catch (error: any) {
       toast.error(`Error: ${error.message}`);
     } finally {
-      setLoading(false); // <- Finalizar carga
+      setLoading(false);
     }
   };
 

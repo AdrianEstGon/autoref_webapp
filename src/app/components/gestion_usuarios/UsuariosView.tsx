@@ -37,13 +37,13 @@ const UsuariosView: React.FC = () => {
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const [usuarioToDelete, setUsuarioToDelete] = useState<number | null>(null);
-  const [loading, setLoading] = useState(true); // Estado de carga
+  const [loading, setLoading] = useState(true); 
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchUsuarios = async () => {
-      setLoading(true); // Iniciar carga
+      setLoading(true); 
       try {
         const data = await usuarioService.getUsuarios();
         const sortedData = data.sort((a: { primerApellido: string; }, b: { primerApellido: string }) => 
@@ -63,7 +63,7 @@ const UsuariosView: React.FC = () => {
       } catch (error) {
         console.error('Error al obtener los usuarios:', error);
       } finally {
-        setLoading(false); // Finalizar carga
+        setLoading(false); 
       }
     };
 
@@ -184,7 +184,6 @@ const UsuariosView: React.FC = () => {
                               </IconButton>
                             </Tooltip>
                           ) : (
-                            // Solo mostrar el botón si el usuario logueado es el superadmin
                             JSON.parse(localStorage.getItem('licencia') || 'null') === SUPER_ADMIN_LICENCIA && (
                               <Tooltip title="Modificar usuario" arrow>
                                 <IconButton color="primary" onClick={() => handleModify(usuario)}>

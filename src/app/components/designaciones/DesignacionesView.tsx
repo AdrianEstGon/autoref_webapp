@@ -256,7 +256,6 @@ return (
                           paddingY: 1,
                         }}
                       >
-                        {/* Resto del código para botones y estados sin cambios */}
                         {(() => {
                           if (!usuarioId) return null;
 

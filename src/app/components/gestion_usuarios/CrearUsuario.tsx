@@ -132,7 +132,6 @@ const CrearUsuario: React.FC<CrearUsuarioProps> = ({ open, onClose, onSave }) =>
         <TextField label="Segundo Apellido" fullWidth margin="normal" name="segundoApellido" value={nuevoUsuario.segundoApellido} onChange={handleChange} error={!!errores.segundoApellido} helperText={errores.segundoApellido} />
         <TextField label="Fecha de Nacimiento" type="date" fullWidth margin="normal" name="fechaNacimiento" value={nuevoUsuario.fechaNacimiento} onChange={handleChange} error={!!errores.fechaNacimiento} helperText={errores.fechaNacimiento} InputLabelProps={{ shrink: true }} />
 
-        {/* Nivel Select as Autocomplete */}
         <FormControl fullWidth margin="normal" error={!!errores.nivel}>
           <Autocomplete
             options={niveles}
@@ -150,7 +149,6 @@ const CrearUsuario: React.FC<CrearUsuarioProps> = ({ open, onClose, onSave }) =>
           />
         </FormControl>
 
-        {/* Club Vinculado Select as Autocomplete */}
         <FormControl fullWidth margin="normal">
         <Autocomplete
           options={clubes}

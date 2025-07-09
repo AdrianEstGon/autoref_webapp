@@ -206,7 +206,7 @@ const loadAvailabilityForMonth = async (month: Date) => {
     console.error("Error al guardar disponibilidad:", error);
     toast.error("Ocurrió un error al guardar la disponibilidad");
   } finally {
-    setSaving(false);  // Quitar loading
+    setSaving(false); 
   }
 };
 

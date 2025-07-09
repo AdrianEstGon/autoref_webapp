@@ -129,7 +129,6 @@ const CrearPartido: React.FC<CrearPartidoProps> = ({ open, onClose, onSave }) =>
     >
       <DialogTitle>Agregar Nuevo Partido</DialogTitle>
       <DialogContent sx={{ overflowY: 'auto' }}>
-        {/* Paso 1: Selección de categoría */}
         <FormControl fullWidth margin="normal" error={!!errores.categoriaId}>
           <Autocomplete
             options={categorias}
