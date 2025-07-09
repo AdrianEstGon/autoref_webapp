@@ -57,6 +57,7 @@ const DesignacionesView = () => {
   const [comentario, setComentario] = useState<string | null>(null);
   const [openDialog, setOpenDialog] = useState(false);
   const [cargandoPartidos, setCargandoPartidos] = useState(true);
+  const [publicando, setPublicando] = useState(false);
 
 
   type Designacion = {
@@ -505,6 +506,7 @@ const DesignacionesView = () => {
 
 
   const handleConfirmar = async () => {
+    setPublicando(true);
     try {
       await Promise.all(
         partidosFiltrados.map(async (partido) => {
@@ -596,9 +598,10 @@ const DesignacionesView = () => {
       setOpenDialog(false);
   
     } catch (error) {
-      console.error("Error al publicar designaciones:", error);
-      toast.error("Error al publicar designaciones");
-      setOpenDialog(false);
+    console.error("Error al publicar designaciones:", error);
+    toast.error("Error al publicar designaciones");
+    } finally {
+      setPublicando(false); // Termina la carga
     }
   };
   
@@ -856,7 +859,14 @@ const DesignacionesView = () => {
           </DialogContent>
           <DialogActions>
             <Button onClick={handleCancelar} color="error">Cancelar</Button>
-            <Button onClick={handleConfirmar} color="primary">Confirmar</Button>
+            <Button
+              onClick={handleConfirmar}
+              color="primary"
+              disabled={publicando}
+              startIcon={publicando ? <CircularProgress size={20} color="inherit" /> : null}
+            >
+              {publicando ? "Publicando..." : "Confirmar"}
+            </Button>
           </DialogActions>
         </Dialog>
       </div>
