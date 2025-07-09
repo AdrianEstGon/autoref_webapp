@@ -39,7 +39,8 @@ const PartidosView: React.FC = () => {
   const [openConfirmDialog, setOpenConfirmDialog] = useState(false);
   const [partidoToDelete, setPartidoToDelete] = useState<number | null>(null);
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
-    const [loading, setLoading] = useState(true); // Estado de carga
+  const [loading, setLoading] = useState(true); // Estado de carga
+  const [importing, setImporting] = useState(false);
 
   const navigate = useNavigate();
   const fetchPartidos = async () => {
@@ -50,7 +51,7 @@ const PartidosView: React.FC = () => {
     } catch (error) {
       console.error('Error al obtener los partidos:', error);
     } finally {
-      setLoading(false); // Asegúrate de finalizar la carga
+      setLoading(false);
     }
   };
 
@@ -128,6 +129,7 @@ const PartidosView: React.FC = () => {
     if (e.target.files) {
       const file = e.target.files[0];
       setSelectedFile(file);
+      setImporting(true);
   
       const reader = new FileReader();
   
@@ -239,6 +241,8 @@ const PartidosView: React.FC = () => {
         } catch (error) {
           console.error('Error al cargar los partidos:', error);
           toast.error('Hubo un error al cargar los partidos');
+        } finally {
+          setImporting(false); 
         }
       };
   
@@ -335,6 +339,7 @@ const PartidosView: React.FC = () => {
                 <Button
                   variant="outlined"
                   component="label"
+                  disabled={importing}
                   sx={{
                     color: 'green',
                     borderColor: 'green',
@@ -344,8 +349,16 @@ const PartidosView: React.FC = () => {
                     },
                   }}
                 >
-                  <UploadFileIcon /> Importar partidos desde Excel
-                  <input type="file" id="upload-file" accept=".xlsx, .xls" onChange={handleFileUpload} hidden />
+                  {importing ? (
+                    <>
+                      <CircularProgress size={20} sx={{ mr: 1 }} /> Cargando partidos...
+                    </>
+                  ) : (
+                    <>
+                      <UploadFileIcon sx={{ mr: 1 }} /> Importar partidos desde Excel
+                    </>
+                  )}
+                  <input type="file" accept=".xlsx, .xls" onChange={handleFileUpload} hidden />
                 </Button>
               </Box>
 
