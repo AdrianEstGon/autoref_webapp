@@ -141,10 +141,11 @@ const PartidosView: React.FC = () => {
   
         const formatDateFromExcel = (excelValue: string | number) => {
           if (typeof excelValue === 'number') {
-            // Convertir el número de serie de Excel a fecha
-            const excelEpoch = new Date(1900, 0, 1);
-            const convertedDate = new Date(excelEpoch.getTime() + (excelValue - 1) * 86400000);
-            return `${convertedDate.getFullYear()}-${String(convertedDate.getMonth() + 1).padStart(2, '0')}-${String(convertedDate.getDate()).padStart(2, '0')}`;
+            const parsed = XLSX.SSF.parse_date_code(excelValue);
+            if (parsed) {
+              const { y, m, d } = parsed;
+              return `${y}-${String(m).padStart(2, '0')}-${String(d).padStart(2, '0')}`;
+            }
           } else if (typeof excelValue === 'string') {
             const parts = excelValue.split('/');
             if (parts.length === 3) {
@@ -153,6 +154,7 @@ const PartidosView: React.FC = () => {
           }
           return '';
         };
+
   
         const nuevosPartidos = await Promise.all(
           data.map(async (item: any) => {
