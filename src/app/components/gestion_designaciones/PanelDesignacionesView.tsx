@@ -388,12 +388,14 @@ const DesignacionesView = () => {
     const arbitrosDisponibles = obtenerArbitrosDisponibles(partido.fecha, partido.hora);
 
     const asignadosOtros = Object.entries(designaciones[partido.id] || {})
-  .filter(([key]) => key !== arbitro) 
-  .map(([, value]) => value?.nombre);
+  .filter(([key]) => key !== arbitro)
+  .map(([, value]) => value?.nombre)
+  .filter((nombre): nombre is string => !!nombre); // <-- este paso es clave
 
-  const arbitrosDisponiblesFiltrados = arbitrosDisponibles.filter(
-    (usuario) => !asignadosOtros.includes(usuario.nombre)
-  );
+const arbitrosDisponiblesFiltrados = arbitrosDisponibles.filter(
+  (usuario) => !asignadosOtros.includes(usuario.nombre)
+);
+
 
     const seleccionado = designaciones[partido.id]?.[arbitro];
 
