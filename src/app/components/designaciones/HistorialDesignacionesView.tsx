@@ -123,7 +123,7 @@ const HistorialDesignacionesView = () => {
                         <CardContent>
                           <Box sx={{ position: "absolute", top: 8, right: 16, display: { xs: 'none', sm: 'block' } }}>
                             <Typography variant="caption" color="text.secondary" fontSize={18}>
-                              Haga click para acceder a los detalles del partido
+                              Haga clic para acceder a los detalles del partido
                             </Typography>
                           </Box>
 
