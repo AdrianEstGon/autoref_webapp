@@ -691,7 +691,7 @@ const DesignacionesView = () => {
           </Typography>
 
          {/* FILTROS  */}
-         <Card sx={{ backgroundColor: "#EDEDED", padding: "1rem", borderRadius: "12px", marginBottom: "2rem" }}>
+         <Card sx={{ backgroundColor: "#ffffffff",  padding: "1rem", borderRadius: "12px", marginBottom: "2rem" }}>
             <CardContent>
               <Grid container spacing={2} alignItems="center">
                 {/* Fecha Inicio */}
