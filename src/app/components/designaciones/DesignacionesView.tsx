@@ -187,7 +187,7 @@ return (
                                     color="text.secondary"
                                     fontSize={18}
                                   >
-                                    Haga click para acceder a los detalles del partido
+                                    Haga clic para acceder a los detalles del partido
                                   </Typography>
                                 </Box>
                               )}
